@@ -9,6 +9,12 @@ TOKEN = config('TOKEN')
 bot = Bot(token=TOKEN)
 
 
+# 新增簡單的首頁路由
+@app.route('/')
+def index():
+    return "Hello Simbo"
+
+
 # 定義收到Telegram訊息時的處理函數
 def handle_message(update: Update, context: CallbackContext):
     message_text = update.message.text
