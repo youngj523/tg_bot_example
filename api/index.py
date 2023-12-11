@@ -1,11 +1,12 @@
-from decouple import config
+import os
+
 from flask import Flask, request
 from telegram import Update, Bot
 from telegram.ext import CallbackContext
 
 # 初始化Flask應用和Telegram機器人
 app = Flask(__name__)
-TOKEN = config('TOKEN')
+TOKEN = os.getenv("TOKEN")
 bot = Bot(token=TOKEN)
 
 
