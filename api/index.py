@@ -12,7 +12,7 @@ bot = Bot(token=TOKEN)
 # 新增簡單的首頁路由
 @app.route('/')
 def index():
-    return "Hello Simbo"
+    return "Hello Simbo!"
 
 
 # 定義收到Telegram訊息時的處理函數
