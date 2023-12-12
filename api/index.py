@@ -1,11 +1,12 @@
-from decouple import config
+import os
+
 from flask import Flask, request
 from telegram import Update, Bot
 from telegram.ext import CallbackContext
 
 # 初始化Flask應用和Telegram機器人
 app = Flask(__name__)
-TOKEN = config('TOKEN')
+TOKEN = os.getenv("TOKEN")
 bot = Bot(token=TOKEN)
 
 
@@ -23,7 +24,7 @@ def handle_message(update: Update, context: CallbackContext):
 
 
 # 設定Telegram機器人的webhook路徑，用於接收訊息
-@app.route(f'/{TOKEN}', methods=['POST'])
+@app.route(f'/telegram', methods=['POST'])
 def webhook():
     json_str = request.get_json()
     update = Update.de_json(json_str, bot)
