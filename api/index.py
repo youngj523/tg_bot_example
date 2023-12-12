@@ -32,9 +32,9 @@ def webhook():
     return 'OK'
 
 
-@app.route('/hook_test')
-def hook_test():
-    return 'OK'
+@app.route('/get_token')
+def get_token():
+    return TOKEN
 
 if __name__ == '__main__':
     # 啟動Flask應用
