@@ -24,13 +24,17 @@ def handle_message(update: Update, context: CallbackContext):
 
 
 # 設定Telegram機器人的webhook路徑，用於接收訊息
-@app.route(f'/telegram', methods=['POST'])
+@app.route('/telegram', methods=['POST'])
 def webhook():
     json_str = request.get_json()
     update = Update.de_json(json_str, bot)
     handle_message(update, None)
     return 'OK'
 
+
+@app.route('/hook_test')
+def webhook():
+    return 'OK'
 
 if __name__ == '__main__':
     # 啟動Flask應用
