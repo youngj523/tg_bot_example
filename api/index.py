@@ -24,7 +24,7 @@ def handle_message(update: Update, context: CallbackContext):
 
 
 # 設定Telegram機器人的webhook路徑，用於接收訊息
-@app.route(f'/{TOKEN}', methods=['POST'])
+@app.route(f'/telegram', methods=['POST'])
 def webhook():
     json_str = request.get_json()
     update = Update.de_json(json_str, bot)
