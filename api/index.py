@@ -33,7 +33,7 @@ def webhook():
 
 
 @app.route('/hook_test')
-def webhook():
+def hook_test():
     return 'OK'
 
 if __name__ == '__main__':
