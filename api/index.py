@@ -20,7 +20,7 @@ def index():
 async def handle_message(update: Update, context: CallbackContext):
     message_text = update.message.text
     response_text = "From Bot: " + message_text
-    update.message.reply_text(response_text)
+    await update.message.reply_text(response_text)
 
 
 # 設定Telegram機器人的webhook路徑，用於接收訊息
