@@ -17,7 +17,7 @@ def index():
 
 
 # 定義收到Telegram訊息時的處理函數
-def handle_message(update: Update, context: CallbackContext):
+async def handle_message(update: Update, context: CallbackContext):
     message_text = update.message.text
     response_text = "From Bot: " + message_text
     update.message.reply_text(response_text)
@@ -25,16 +25,17 @@ def handle_message(update: Update, context: CallbackContext):
 
 # 設定Telegram機器人的webhook路徑，用於接收訊息
 @app.route('/telegram', methods=['POST'])
-def webhook():
+async def webhook():
     json_str = request.get_json()
     update = Update.de_json(json_str, bot)
-    handle_message(update, None)
+    await handle_message(update, None)
     return 'OK'
 
 
 @app.route('/get_token')
 def get_token():
     return TOKEN
+
 
 if __name__ == '__main__':
     # 啟動Flask應用
