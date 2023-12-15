@@ -9,6 +9,7 @@ app = Flask(__name__)
 TOKEN = os.getenv("TOKEN")
 # bot = Bot(token=TOKEN)
 application = ApplicationBuilder().token(TOKEN).build()
+uq = application.update_queue
 
 
 # 新增簡單的首頁路由
@@ -18,12 +19,12 @@ def index():
 
 
 # 定義收到Telegram訊息時的處理函數
-async def handle_message(update: Update, context: CallbackContext):
+async def handle_message(update: Update):
     message_text = update.message.text
     response_text = "From Bot: " + message_text
     # await update.message.reply_text(response_text)
 
-    await context.bot.send_message(chat_id=update.effective_chat.id, text=response_text)
+    await application.bot.send_message(chat_id=update.effective_chat.id, text=response_text)
     return update.message.text
 
 
@@ -31,8 +32,8 @@ async def handle_message(update: Update, context: CallbackContext):
 @app.route('/telegram', methods=['POST'])
 async def webhook():
     json_str = request.get_json()
-    update = Update.de_json(json_str, bot)
-    await handle_message(update, None)
+    update = Update.de_json(json_str, application.bot)
+    await handle_message(update)
     return 'OK'
 
 
