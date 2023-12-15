@@ -1,15 +1,16 @@
 import os
 
 from flask import Flask, request
+import asyncio
 from telegram import Update, Bot
-from telegram.ext import ContextTypes, ApplicationBuilder, CommandHandler, MessageHandler, filters
+# from telegram.ext import ContextTypes, ApplicationBuilder, CommandHandler, MessageHandler, filters
 
 # 初始化Flask應用和Telegram機器人
 app = Flask(__name__)
 TOKEN = os.getenv("TOKEN")
 bot = Bot(token=TOKEN)
 
-application = ApplicationBuilder().token(TOKEN).build()
+# application = ApplicationBuilder().token(TOKEN).build()
 
 
 # uq = application.update_queue
@@ -53,13 +54,13 @@ async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 if __name__ == '__main__':
-    start_handler = CommandHandler('start', start)
-    echo_handler = MessageHandler(filters.TEXT & (~filters.COMMAND), echo)
-
-    application.add_handler(start_handler)
-    application.add_handler(echo_handler)
-
-    application.run_polling()
+    # start_handler = CommandHandler('start', start)
+    # echo_handler = MessageHandler(filters.TEXT & (~filters.COMMAND), echo)
+    #
+    # application.add_handler(start_handler)
+    # application.add_handler(echo_handler)
+    #
+    # application.run_polling()
 
     # 啟動Flask應用
     app.run(debug=True)
