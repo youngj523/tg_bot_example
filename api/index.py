@@ -1,14 +1,15 @@
 import os
 
 from flask import Flask, request
-import asyncio
 from telegram import Update, Bot
+
 # from telegram.ext import ContextTypes, ApplicationBuilder, CommandHandler, MessageHandler, filters
 
 # 初始化Flask應用和Telegram機器人
 app = Flask(__name__)
 TOKEN = os.getenv("TOKEN")
 bot = Bot(token=TOKEN)
+
 
 # application = ApplicationBuilder().token(TOKEN).build()
 
@@ -26,7 +27,9 @@ def index():
 async def handle_message(update: Update):
     message_text = update.message.text
     response_text = "From Bot: " + message_text
-    await update.message.reply_text(response_text)
+    # await update.message.reply_text(response_text)
+    async with bot:
+        await bot.send_message(chat_id=update.effective_chat.id, text=response_text)
 
     # await application.bot.send_message(chat_id=update.effective_chat.id, text=response_text)
 
