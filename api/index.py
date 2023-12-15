@@ -19,9 +19,11 @@ def index():
 
 # 定義收到Telegram訊息時的處理函數
 async def handle_message(update: Update, context: CallbackContext):
-    # message_text = update.message.text
-    # response_text = "From Bot: " + message_text
+    message_text = update.message.text
+    response_text = "From Bot: " + message_text
     # await update.message.reply_text(response_text)
+
+    await context.bot.send_message(chat_id=update.effective_chat.id, text=response_text)
     return update.message.text
 
 
