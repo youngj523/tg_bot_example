@@ -9,7 +9,7 @@ app = Flask(__name__)
 TOKEN = os.getenv("TOKEN")
 bot = Bot(token=TOKEN)
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY "))
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
 # 新增簡單的首頁路由
